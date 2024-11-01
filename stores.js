@@ -18,9 +18,8 @@ document.addEventListener('DOMContentLoaded', async function() {
 
         
         const lastUpdated = document.createElement('p');
-        lastUpdated.textContent = `Last updated: ${new Date(store.lastUpdated).toLocaleString()}`;
+        lastUpdated.innerHTML = `Last updated: ${new Date(store.lastUpdated).toLocaleString()} <br> Total products: ${store.products.length}`;
 
-        
         
         const productsGrid = document.createElement('div');
         productsGrid.className = 'products-grid';
