@@ -13,7 +13,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     function displayProducts(store) {
         productsView.innerHTML = ''; // Clear current products
         
-        const header = document.createElement('h2');
+        const header = document.createElement('h1');
+        header.style.color = "#6f2cf5"
         header.textContent = store.url;
 
         
@@ -29,7 +30,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             productCard.className = 'product-card';
             
             productCard.innerHTML = `
-                <img class="product-image" src="${product.images[0]?.src || ''}" alt="${product.title}">
+                <img class="product-image" src="${product.images[0]?.src || '/icons/noimage.jpg'}" alt="${product.title}">
                 <h3>${product.title}</h3>
                 <p>${product.variants[0]?.price ? '$' + product.variants[0].price : 'Price not available'}</p>
             `;
