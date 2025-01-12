@@ -5,6 +5,13 @@ document.addEventListener('DOMContentLoaded', function() {
     chrome.tabs.sendMessage(tabs[0].id, {action: "checkShopify"}, function(response) {
       const shopifyCheckDiv = document.getElementById('shopify-check');
 
+        if (chrome.runtime.lastError) {
+        shopifyCheckDiv.textContent = "❌ Unable to check this page";
+        shopifyCheckDiv.classList.add('non-shopify-store');
+        storeUrl.textContent = tabs[0].url;
+        return;
+        }
+
   
         if (response && response.isShopify) {
           shopifyCheckDiv.textContent = "✅ This store is built with Shopify!";
