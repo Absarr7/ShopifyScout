@@ -8,17 +8,29 @@ function checkForShopify() {
   for (let indicator of shopifyIndicators) {
     if (document.documentElement.innerHTML.includes(indicator)) {
       console.log('this is a shopify store');
+
+      chrome.runtime.sendMessage({
+        action: "updateIcon",
+        isShopify: true
+      });
       
       return true;
     }
     else {
       console.log('this is not a shopify store');
+      chrome.runtime.sendMessage({
+        action: "updateIcon",
+        isShopify: false
+      });
       return false;
       
     }
   }
+
+
   
 }
+
 
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {

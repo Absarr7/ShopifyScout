@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (response && !response.isShopify) {
           shopifyCheckDiv.textContent = "❌ This store is not built with Shopify.";
           shopifyCheckDiv.classList.add('non-shopify-store');
+          storeUrl.textContent = response.url;
         }
       });
     });
