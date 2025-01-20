@@ -26,9 +26,6 @@ function checkForShopify() {
       
     }
   }
-
-
-  
 }
 
 
@@ -37,7 +34,7 @@ chrome.runtime.onMessage.addListener(
     if (request.action === "checkShopify") {
       sendResponse({
         isShopify: checkForShopify(),
-         url: window.location.hostname,
+        url: window.location.hostname,
         });
     }
   }

@@ -105,3 +105,28 @@ async function fetchStoreProducts(storeUrl) {
     throw error;
   }
 }
+// async function fetchStoreProducts(storeUrl) {
+//   try {
+//     // Only fetch first page initially
+//     const response = await fetch(`https://${storeUrl}/products.json?limit=50&page=1`);
+//     if (!response.ok) {
+//       throw new Error(`HTTP error! status: ${response.status}`);
+//     }
+//     const data = await response.json();
+    
+//     const result = await chrome.storage.local.get('stores');
+//     const stores = result.stores || [];
+//     const storeIndex = stores.findIndex(s => s.url === storeUrl);
+    
+//     if (storeIndex !== -1) {
+//       stores[storeIndex].products = data.products;
+//       stores[storeIndex].lastUpdated = Date.now();
+//       stores[storeIndex].totalPages = Math.ceil(data.products.length / 50); // Store total pages info
+//       stores[storeIndex].currentPage = 1;
+//       await chrome.storage.local.set({ stores });
+//     }
+//   } catch (error) {
+//     console.error('Error fetching products:', error);
+//     throw error;
+//   }
+// }

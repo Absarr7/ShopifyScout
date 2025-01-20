@@ -6,9 +6,14 @@ document.addEventListener('DOMContentLoaded', function() {
       const shopifyCheckDiv = document.getElementById('shopify-check');
 
         if (chrome.runtime.lastError) {
-        shopifyCheckDiv.textContent = "❌ Unable to check this page";
+        shopifyCheckDiv.textContent = "❌ This store is not built with shopify.";
         shopifyCheckDiv.classList.add('non-shopify-store');
         storeUrl.textContent = tabs[0].url;
+
+        if (tabs[0].url === 'chrome-extension://pkcajeiphklacnjejhljkfnhjoeddofo/stores.html') {
+          storeUrl.textContent = "you are currently on the extension's page.";
+        }
+        // storeUrl.style.padding = '0 -20px';
         return;
         }
 
@@ -19,8 +24,6 @@ document.addEventListener('DOMContentLoaded', function() {
           saveBtn.style.display = 'block'; 
           storeUrl.textContent = response.url;
 
-          
-          
         } else if (response && !response.isShopify) {
           shopifyCheckDiv.textContent = "❌ This store is not built with Shopify.";
           shopifyCheckDiv.classList.add('non-shopify-store');
