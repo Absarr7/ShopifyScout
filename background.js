@@ -19,6 +19,26 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 });
 
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  // Only run when the page is fully loaded
+  if (changeInfo.status === 'complete') {
+    // Send message to content script to check Shopify status
+    chrome.tabs.sendMessage(tabId, {action: "checkShopify"}, (response) => {
+      if (chrome.runtime.lastError) {
+        // If there's an error (like content script not loaded), set to non-Shopify icon
+        updateExtensionIcon(false);
+        return;
+      }
+      
+      if (response && response.isShopify) {
+        updateExtensionIcon(true);
+      } else {
+        updateExtensionIcon(false);
+      }
+    });
+  }
+});
+
 function updateExtensionIcon(isShopify) {
   const iconPath = isShopify ? {
     16: "/icons/active16.png",

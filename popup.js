@@ -14,8 +14,10 @@ document.addEventListener('DOMContentLoaded', function() {
         shopifyCheckDiv.classList.add('non-shopify-store');
         storeUrl.textContent = tabs[0].url;
 
-        if (tabs[0].url === 'chrome-extension://pkcajeiphklacnjejhljkfnhjoeddofo/stores.html') {
+        if (tabs[0].url == 'chrome-extension://pkcajeiphklacnjejhljkfnhjoeddofo/stores.html' || 'chrome-extension://pkcajeiphklacnjejhljkfnhjoeddofo/products.html') {
           storeUrl.textContent = "you are currently on the extension's page.";
+          shopifyCheckDiv.style.display = 'none';
+          
         }
         return;
         }
@@ -28,11 +30,29 @@ document.addEventListener('DOMContentLoaded', function() {
           // saveBtn.style.display = 'block'; 
           storeUrl.textContent = response.url;
 
+
+          if (response.apps && response.apps.length > 0) {
+            const appsDiv = document.querySelector('.apps-container');
+            appsDiv.classList.add('detected-apps');
+            appsDiv.innerHTML = `
+              <h3>Detected Apps:</h3>
+              <ul>
+                ${response.apps.map(app => `<li>${app}</li>`).join('')}
+              </ul>
+            `;
+            // shopifyCheckDiv.after(appsDiv);
+          } else {
+            const appsDiv = document.createElement('div');
+            appsDiv.innerHTML = `no apps detected.`
+          }
+
+          
           viewProductsBtn.addEventListener('click', ()=>{
             chrome.tabs.create({
               url: `products.html?store=${response.url}`
             })
           });
+          
 
         } else if (response && !response.isShopify) {
           shopifyCheckDiv.textContent = "❌ This store is not built with Shopify.";
@@ -73,10 +93,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
+
   const viewStoresBtn = document.getElementById('viewSavedStoresBtn');
   viewStoresBtn.addEventListener('click', () => {
     chrome.tabs.create({url: "stores.html"});
   });
+
+  // Add detected apps section
 
     
   });
