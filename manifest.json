@@ -9,8 +9,8 @@
     ],
 
     "host_permissions": [
-    "https://*.myshopify.com/*",
-    "https://*/*"
+        "https://*.myshopify.com/*",
+        "https://*/*"
     ],
 
     "background": {
