@@ -12,11 +12,12 @@
       body {
         width: 300px;
         font-family: 'Poppins', sans-serif;
-        height: 400px;
+        min-height: 500px;
         display: flex;
         justify-content: center;
         background-color: rgb(243, 243, 243);
         color: black;
+        overflow-y: auto;
       }
 
       .container {
@@ -71,7 +72,8 @@
       }
 
       .shopify-store {
-        background-color: #6f2cf5;
+        /* background-color: #6f2cf5; */
+        background-color: #20a366cd;
         padding: 10px 25px;
         margin-top: 20px;
         border-radius: 25px;
@@ -110,7 +112,16 @@
       }
 
       #viewProductsBtn {
-        background-color: #6f2cf5;
+        /* background-color: #6f2cf5; */
+        background-color: #6735cccf;
+        border-radius: 20px;
+        width: 200px;
+        /* padding: 5px 0; */
+      }
+
+      #viewProductsBtn:hover {
+        background-color: #572fa78e;
+        transition: 1s linear;
       }
 
       .buttons {
@@ -161,8 +172,10 @@
 
     .detected-apps h3 {
       color: #6f2cf5;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       margin: 0 0 8px 0;
+      padding: 0 10px;
+      font-weight: 600;
     }
 
     .detected-apps ul {
@@ -172,10 +185,36 @@
     }
 
     .detected-apps li {
-      font-size: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
       padding: 3px 0;
-      color: #1b1b1b;
+      color: white;
+      background-color: #572fa78e;
+      border-radius: 12px;
+      /* width: 100%; */
+      margin: 10px 0;
+      padding: 10px 15px;
+      font-weight: 500;
     }
+
+    .detected-apps .app-btn {
+      font-size: 11px;
+      width: 80px;
+      margin: 0;
+      background-color: #6735cccf;
+      border: 1px solid white;
+    }
+
+    .contact {
+      font-size: 12px;
+      color: #1b1b1b;
+      text-decoration: underline;
+    }
+
+
+
 
     </style>
     <!-- stylinnnggg endssss -->
@@ -189,7 +228,7 @@
       <div id="shopify-check"></div>
       <p id="store-url"></p>
       <div class="buttons">
-        <button id="viewProductsBtn">View Products</button>
+        <button id="viewProductsBtn">View All Products</button>
         <button class="add-btn" id="save-btn">Save This Store</button>
         <button id="viewSavedStoresBtn">Saved Stores</button>
       </div>
