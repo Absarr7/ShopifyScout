@@ -14,9 +14,11 @@ document.addEventListener('DOMContentLoaded', function() {
         shopifyCheckDiv.classList.add('non-shopify-store');
         storeUrl.textContent = tabs[0].url;
 
-        if (tabs[0].url == 'chrome-extension://pkcajeiphklacnjejhljkfnhjoeddofo/stores.html' || 'chrome-extension://pkcajeiphklacnjejhljkfnhjoeddofo/products.html') {
-          storeUrl.textContent = "you are currently on the extension's page.";
-          shopifyCheckDiv.style.display = 'none';
+        if (tabs[0].url = 'chrome-extension://pkcajeiphklacnjejhljkfnhjoeddofo/products.html') {
+          shopifyCheckDiv.textContent = "❌ This store is not built with shopify.";
+        shopifyCheckDiv.classList.add('non-shopify-store');
+          storeUrl.textContent = "you are currently on the extension's page";
+          
           
         }
         return;
